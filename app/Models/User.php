@@ -79,6 +79,34 @@ class User {
             return false;
         }
     }
+    
+    /**
+     *  Login  user
+     * 
+     * @param mixed | null $username
+     * @param mixed | null $password
+     * @return boolean
+     */
+    public function login($username,$password){
+     // prepared statement
+     $this->getDB()->query('SELECT * FROM users WHERE username = :username');
+
+     // bind values
+     $this->getDB()->bind(':username',$username);
+
+     // Get single row
+     $row = $this->getDB()->single();
+
+     // Get hashed password
+     $hashedPassword = $row->password;
+
+     // Check for hashed  password and password are match
+     if(password_verify($password,$hashedPassword)){
+         return $row;
+     } else {
+         return false;
+     }
+    }
 
     /**
      *  Get all user in the database

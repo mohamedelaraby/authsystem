@@ -20,10 +20,55 @@ class Users extends Controller{
      */
     public function login(){
         $data = [
-            'title' => 'Login Page',
+            'username' => '',
+            'password' => '',
             'usernameError' => '',
             'passwordError' => '',
         ];
+
+         // Check for request method
+         if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            // Sanatize post data
+            $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
+            
+            // Trim post data
+            $data = [
+                'username' => trim($_POST['username']),
+                'password' => trim($_POST['password']),
+                'usernameError' => '',
+                'passwordError' => '',
+            ];
+
+            // Validate username
+            if(empty($data['username'])){
+                $data['Error'] = 'Please enter a username';
+            }
+            //validate password
+            if(empty($data['password'])){
+                $data['passwordError'] = 'Please enter a password';
+            }
+            // check if errors array is empty
+            if(empty($data['usernameError']) && empty($data['passwordError'])){
+                $loggedInUser = $this->userModel->login($data['username'],$data['password']);
+            
+                // Check if user logged in
+                if($loggedInUser){
+                    $this->createUserSession($loggedInUser);
+                } else {
+                    $data['passwordError'] = 'Password  or username is incorrect, please try again';
+                    $this->view('users/login',$data);
+                }
+
+            }
+
+        } else {
+            $data = [
+                'username' => '',
+                'password' => '',
+                'usernameError' => '',
+                'passwordError' => '',
+            ];
+        }
 
         $this->view('users/login',$data);
     } 
@@ -129,5 +174,22 @@ class Users extends Controller{
         }
 
         $this->view('users/register',$data);
+    }
+
+
+    /**
+     *  Start new session with logged user
+     * 
+     *  @return session
+     */
+    public function createUserSession($user){
+        //start session
+        session_start();
+
+        // Assign user id and user name to session
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['username'] = $user->username;
+        $_SESSION['email'] = $user->email;
+
     }
 }
