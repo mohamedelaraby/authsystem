@@ -183,13 +183,24 @@ class Users extends Controller{
      *  @return session
      */
     public function createUserSession($user){
-        //start session
-        session_start();
-
         // Assign user id and user name to session
         $_SESSION['user_id'] = $user->id;
         $_SESSION['username'] = $user->username;
         $_SESSION['email'] = $user->email;
+    }
+    
+    /**
+     *  Logout current user
+     * 
+     *  @return session
+     */
+    public function logout(){
+        
+        unset($_SESSION['user_id'] );
+        unset($_SESSION['username']);
+        unset($_SESSION['email']);
 
+        // Redirect ot login page
+        header('location:'. URL_ROOT . '/users/login');
     }
 }
