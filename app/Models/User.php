@@ -48,7 +48,7 @@ class User {
         $this->getDB()->bind(':email',$email);
 
         // Check if email is already raken
-        if($this->getDB()->rowCount > 0){
+        if($this->getDB()->rowCount() > 0){
             return true;
         } else {
             return false;

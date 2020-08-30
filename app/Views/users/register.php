@@ -31,8 +31,9 @@
                 
                 <input type="password" placeholder=" confirm Password *" name="confirmpassword">
                 <span class="invalidFeedBack">
-                <?php echo $data['confirmpasswordError']; ?>
+                <?php echo $data['confirmPasswordError']; ?>
                 </span>
+                <br>
 
                 <button id="submit" type="submit" value="submit">Submit</button>
 

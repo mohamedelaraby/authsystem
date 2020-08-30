@@ -42,7 +42,7 @@ class Users extends Controller{
             'usernameError' => '',
             'emailError' => '',
             'passwordError' => '',
-            'confirmpasswordError' => ''
+            'confirmPasswordError' => ''
         ];
 
         // Check for request method
@@ -50,17 +50,21 @@ class Users extends Controller{
             // Sanatize post data
             $_POST = filter_input_array(INPUT_POST,FILTER_SANITIZE_STRING);
             
+           
+
             // Trim post data
             $data = [
-                'username' => trim($data['username']),
-                'email' => trim($data['email']),
-                'password' => trim($data['password']),
-                'confirmpassword' => trim($data['confirmpassword']),
+                'username' => trim($_POST['username']),
+                'email' => trim($_POST['email']),
+                'password' => trim($_POST['password']),
+                'confirmpassword' => trim($_POST['confirmpassword']),
                 'usernameError' => '',
                 'emailError' => '',
                 'passwordError' => '',
                 'confirmPasswordError' => ''
             ];
+
+          
 
             // Validation rules
             $nameValidation = "/^[a-zA-Z0-9]*$/";
@@ -89,7 +93,7 @@ class Users extends Controller{
             // Validate password on length and numeric values
             if(empty($data['password'])){
                 $data['passwordError'] = 'Please enter password.';
-            } elseif(strlen($data['password'] < 6)){
+            } elseif(strlen($data['password'] <= 6)){
                 $data['passwordError'] = 'Password must be at least 8 charachers.';
             } elseif(!preg_match($passwordValidation,$data['password'])){
                 $data['passwordError'] = 'Password must be at least one numeric value.';
@@ -97,11 +101,11 @@ class Users extends Controller{
 
             // Validate confirm Password
             if(empty($data['confirmpassword'])){
-                $data['confirmpasswordError'] = 'Please enter password again.';
+                $data['confirmPasswordError'] = 'Please enter password again.';
             } else {
                 // Check if the two passwords does not match
-                if(!$data['password'] == $data['confirmpassword']){
-                 $data['confirmpasswordError'] = 'Passwords do not matchm please try again.';
+                if($data['password'] !== $data['confirmpassword']){
+                 $data['confirmPasswordError'] = 'Passwords do not matchm please try again.';
                 }
             }
 
@@ -109,7 +113,7 @@ class Users extends Controller{
              if(empty($data['usernameError']) &&
                 empty($data['emailError']) &&
                 empty($data['passwordError']) &&
-                empty($data['confirmpasswordError'])){
+                empty($data['confirmPasswordError'])){
                     // Hash password using one-ways hashing algorithm
                     $data['password'] = password_hash($data['password'],PASSWORD_DEFAULT);
                     
