@@ -1,0 +1,167 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html,body{
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    top: 0;
+    bottom: 0;
+    font-family: 'Lato',sans-serif;
+    font-size: 62.50%;
+}
+
+/* Start nav*/
+.top-nav{
+    display: block;
+}
+
+.top-nav ul {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 6%;
+    top: 2%;
+}
+
+.top-nav ul li {
+    display: inline-block;
+    margin-left: 2.8rem;
+}
+
+.top-nav ul li a{
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.8rem;
+}
+
+.top-nav ul li a:hover{
+  color: #fafafa ;
+  transition: 0.15s ease-in;
+}
+
+ .navbar{
+   width: 100%;
+   height: 7rem;
+   background-color: #1a1a1a;
+   box-shadow: 0rem 0rem 1rem #1a1a1a;
+ }
+/* End nav*/
+
+/* Starting header*/
+#section-landing{
+  background: url('../img/mattew.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+}
+
+.wrapper-landing{
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
+  top: 40%;
+}
+
+.wrapper-landing h1 {
+  font-size: 4.8rem;
+  color: #ffff;
+  margin: 0;
+  font-weight: 100;
+}
+
+.wrapper-landing h2 {
+  font-size: 4.2rem;
+  color: #f2f2f2;
+  opacity: 0.6;
+  margin: 0;
+  font-weight: 100;
+}
+/* Ending header*/
+
+
+/* Starting login button*/
+.btn-login{
+  border: 0.1rem solid #fff;
+  padding: .6rem 2.4rem;
+}
+.btn-login:hover,
+.btn-login:active{
+  background-color: #000;
+
+}
+/* Ending login button*/
+
+/* Starting login form*/
+.container-login{
+  width: 100%;
+  margin:  0 auto;
+  position: relative;
+  top: 20%;
+}
+
+.wrapper-login{
+  width: 80%;
+  margin:  0 auto;
+  text-align: center; 
+}
+
+.wrapper-login input{
+  width: 20rem;
+  height: 2.6rem;
+  border: 0.1rem solid #ccc;
+  background-color: #f5f5f5;
+  font-size: 1.8rem;
+  display: block;
+  position: relative;
+  margin: 1rem auto;
+}
+
+input::placeholder{
+  color: #a1a1a1;
+  font-size: 1.4rem;
+}
+
+.wrapper-login h2 {
+  font-size: 4rem;
+  text-transform: uppercase;
+}
+
+#submit{
+  width: 20rem;
+  height: 4.2rem;
+  border: 0.1rem solid #0000;
+  background-color: #000;
+  color: #fff;
+  font-size: 2rem;
+  margin: .2rem 0rem 1rem 0rem;
+}
+
+#submit:hover{
+  border: 0.1rem solid #a1a1a1;
+  background-color: #a1a1a1;
+  transition: 0.15s ease-in;
+}
+
+.options a{
+  color: #006400;
+}
+
+.options a:hover{
+  color: #006400;
+  transition: 0.20s ease-in;
+  text-decoration: none;
+}
+.wrapper-login p {
+  font-size: 1.2rem;
+}
+
+.invalidDeedBack{
+  color:#fa0000;
+}
+/* Ending login form*/
